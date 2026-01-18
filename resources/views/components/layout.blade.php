@@ -18,7 +18,7 @@
 </head>
 
 <body class="">
-
+    {{ $slot }}
 </body>
 
 </html>
