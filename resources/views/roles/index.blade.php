@@ -1,6 +1,6 @@
-<x-layout title="Users">
-    @can('create_users')
-        <div class="flex justify-end p-4"><a href="/users/create" class="btn btn-primary">Create a User</a></div>
+<x-layout title="Roles" pageTitle="Roles">
+    @can('create_roles')
+        <div class="flex justify-end p-4"><a href="/roles/create" class="btn btn-primary">Create a Role</a></div>
     @endcan
 
     <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
@@ -10,23 +10,21 @@
                 <tr>
                     <th></th>
                     <th>Name</th>
-                    <th>Email</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- row 1 -->
-                @foreach ($users as $user)
+                @foreach ($roles as $role)
                     <tr>
-                        <th>{{ $user->id }}</th>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
+                        <th>{{ $role->id }}</th>
+                        <td>{{ $role->name }}</td>
                         <td class="flex gap-2">
-                            @can('edit_users')
-                                <a class="btn btn-secondary" href="/users/{{ $user->id }}/edit">Edit</a>
+                            @can('edit_roles')
+                                <a class="btn btn-secondary" href="/roles/{{ $role->id }}/edit">Edit</a>
                             @endcan
-                            @can('delete_users')
-                                <form action="/users/{{ $user->id }}" method="POST">
+                            @can('delete_roles')
+                                <form action="/roles/{{ $role->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
@@ -40,6 +38,6 @@
         </table>
     </div>
     <div class="mt-3">
-        {{ $users->links() }}
+        {{ $roles->links() }}
     </div>
 </x-layout>

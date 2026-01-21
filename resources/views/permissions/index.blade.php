@@ -1,6 +1,6 @@
-<x-layout title="Users">
-    @can('create_users')
-        <div class="flex justify-end p-4"><a href="/users/create" class="btn btn-primary">Create a User</a></div>
+<x-layout title="Permissions" pageTitle="Permissions">
+    @can('create_permissions')
+        <div class="flex justify-end p-4"><a href="/permissions/create" class="btn btn-primary">Create a Permissions</a></div>
     @endcan
 
     <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
@@ -10,23 +10,21 @@
                 <tr>
                     <th></th>
                     <th>Name</th>
-                    <th>Email</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- row 1 -->
-                @foreach ($users as $user)
+                @foreach ($permissions as $permission)
                     <tr>
-                        <th>{{ $user->id }}</th>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
+                        <th>{{ $permission->id }}</th>
+                        <td>{{ $permission->name }}</td>
                         <td class="flex gap-2">
-                            @can('edit_users')
-                                <a class="btn btn-secondary" href="/users/{{ $user->id }}/edit">Edit</a>
+                            @can('edit_permissions')
+                                <a class="btn btn-secondary" href="/permissions/{{ $permission->id }}/edit">Edit</a>
                             @endcan
-                            @can('delete_users')
-                                <form action="/users/{{ $user->id }}" method="POST">
+                            @can('delete_permissions')
+                                <form action="/permissions/{{ $permission->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
@@ -40,6 +38,6 @@
         </table>
     </div>
     <div class="mt-3">
-        {{ $users->links() }}
+        {{ $permissions->links() }}
     </div>
 </x-layout>
